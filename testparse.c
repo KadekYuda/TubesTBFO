@@ -8,10 +8,11 @@
 
 char ALFABETS[100];
 char STATES[100];
-char FINAL_STATES[2] = {'A', 'B'};
+char FINAL_STATES[100];
 char current_state;
 int JUMLAH_STATE;
 int JUMLAH_ALFABET;
+int JUMLAH_FINALSTATE;
 
 boolean IsCharValid(char current_char);
 
@@ -20,7 +21,7 @@ int main()
     FILE *inputFile;
     char c;
     char DFA_State[100][100];
-    int i, j;
+    int i, j, k;
     char current_char;
     char result;
     int a, b, input, state;
@@ -36,6 +37,7 @@ int main()
     {
         i = 0;
         j = 0;
+        k = 0;
         c = fgetc(inputFile);
         while ( c != EOF )
         {
@@ -51,6 +53,12 @@ int main()
                 }
                 else if ( i != 0 && j ==0 )
                 {
+                    if ( c == '*' )
+                    {
+                        c = fgetc(inputFile);
+                        FINAL_STATES[k] = c;
+                        k++;
+                    }
                     STATES[i-1] = c;
                 }
                 j++;
@@ -67,11 +75,14 @@ int main()
     fclose(inputFile);
     JUMLAH_ALFABET = j;
     JUMLAH_STATE = i;
+    JUMLAH_FINALSTATE= k;
     current_state = STATES[0];
 
     /*** TEST ISI TABEL DFA ***/
-    /*
-    printf("DFA READY!\nJumlah Alfabet:%d\nJumlah State: %d\n", JUMLAH_ALFABET, JUMLAH_STATE);
+
+    printf("DFA READY!\nJumlah Alfabet:%d\nJumlah State: %d\nJumlah Final State: %d\n\n", JUMLAH_ALFABET, JUMLAH_STATE, JUMLAH_FINALSTATE);
+
+    printf("TABLE FUNCTION:\n");
     for ( i = 0 ; i <= JUMLAH_STATE-1; i++)
     {
         for ( j = 0; j <= JUMLAH_ALFABET-1; j++)
@@ -81,17 +92,27 @@ int main()
         printf("\n");
     }
 
+    printf("STATES: ");
     for (i = 0; i <= JUMLAH_STATE-1; i++)
     {
         printf("%c ", STATES[i]);
     }
     printf("\n");
+
+    printf("ALFABETS: ");
     for (i = 0; i <= JUMLAH_ALFABET-1; i++)
     {
         printf("%c ", ALFABETS[i]);
     }
     printf("\n");
-    */
+
+    printf("FINAL STATES: ");
+    for (i = 0; i <= JUMLAH_FINALSTATE-1; i++)
+    {
+        printf("%c ", FINAL_STATES[i]);
+    }
+    printf("\n");
+
     /*** PENGUNAAN TABEL DFA ***/
 
     printf("Masukkan string yang akan diolah: ");
@@ -148,7 +169,7 @@ int main()
 
         result = NOT_REACHED_FINAL_STATE;
         i = 0;
-        while ( i < 2 && result != REACHED_FINAL_STATE )
+        while ( i < JUMLAH_FINALSTATE && result != REACHED_FINAL_STATE )
         {
             if (current_state == FINAL_STATES[i])
             {
