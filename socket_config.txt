@@ -1,0 +1,13 @@
++  s n d b l c a r w t k i x
+*A B X X X X X X X X X X Z A
+*B X G B C D E X X X X X Z A
+*C X H C X D E X X X X X Z A 
+*D X I D X X X E X X X X Z A
+*E X J E X X X X F E X X Z A
+*F X X X X X X X X X F E X X
+*G X X B H I J X X X X X Z A
+*H X H C X I J X X X X X Z A
+*I X I D X X X J X X X X Z A
+*J X J E X X X X J J X X Z A
+*Z Z Z Z Z Z Z Z Z Z Z Z Z Z
+ X X X X X X X X X X X X X X
