@@ -115,7 +115,7 @@ int main()
     printf("\n");
     */
     printf("\n************************  TUGAS BESAR TBFO  ************************\n");
-     printf("***********************  PERMODELAN  SOCKET  ************************\n");
+    printf("***********************  PERMODELAN  SOCKET  ************************\n");
     printf("\nOLEH:\nJonathan Tjandra (13516058)\nI Kadek Yuda Budipratama Giri (13516115)\n\n");
     printf("***** PETUNJUK MENGENAI FUNGSI *****\n\n");
     printf("s - Socket()    [ Initialize Socket ]\n");
@@ -206,6 +206,8 @@ int main()
             case REACHED_FINAL_STATE:printf("\nAccepted\n");break;
             default: printf("\nUnknown Error\n");
         }
+
+    system("pause");
 
     return 0;
 
